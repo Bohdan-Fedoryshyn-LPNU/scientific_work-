@@ -1,0 +1,24 @@
+- hosts: all
+  become: true
+  tasks:
+  
+  - name: Container present
+    docker_container:
+      name: elasticsearch
+      state: present
+      image: elasticsearch:8.5.0
+      pull: true
+      command: sleep infinity
+
+  - name: Container present
+    docker_container:
+      name: elasticsearch
+      state: started
+      image: elasticsearch:8.5.0
+      pull: true
+      exposed_ports:
+        - 9200
+          9300
+      published_ports:
+        [ 0.0.0.0:9200:9200, 0.0.0.0:9300:9300]
+      

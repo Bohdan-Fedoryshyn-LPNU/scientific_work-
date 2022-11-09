@@ -1,0 +1,38 @@
+---
+# tasks file for nginx
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: /home/ubuntu/nginx/
+    state: directory
+    mode: '0755'
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: /mnt/c/Users/bohdan.fedoryshyn/Desktop/Personal_Folder/Study/scientific_work/Terraform/index.html
+    dest: /home/ubuntu/nginx/index.html
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+
+
+- name: Container present
+  docker_container:
+      name: elasticsearch
+      state: present
+      image: nginx
+      pull: true
+      command: sleep infinity
+
+- name: Container present
+  docker_container:
+      name: nginx
+      state: started
+      image: nginx
+      pull: true
+      exposed_ports:
+        - 80
+      published_ports:
+        [ 0.0.0.0:80:80]
+      volumes:
+        - /home/ubuntu/nginx:/usr/share/nginx/html

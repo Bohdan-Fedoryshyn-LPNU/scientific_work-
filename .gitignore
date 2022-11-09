@@ -1,0 +1,10 @@
+Fedoryshyn.pptx
+~$Fedoryshyn.pptx
+*.tfstate*
+Terraform/.idea/
+Terraform/elb/.ibs.swp
+Terraform/elb/.instances.tf.swp
+Terraform/elb/.terraform.lock.hcl
+Terraform/elb/.terraform/
+Terraform/elb/.v.swp
+Terraform/variable.tf
